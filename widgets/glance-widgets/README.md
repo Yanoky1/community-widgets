@@ -17,12 +17,12 @@ Displays data from the glances server
     url: ${GLANCES_URL}/api/4/system
     options:
     base_url:    ${GLANCES_URL}
-    net_iface:   "enp5s0"
-    disk_mounts: "^(/root|/4TB|/Toshiba|/Hitachi)$"   # regex, несколько через |
+    net_iface:   "<you network>"
+    disk_mounts: "^(/youdisk1|/youdisk2)$"  
     template: |
     {{ $base     := .Options.StringOr "base_url"  "http://localhost:61208" }}
     {{ $netIface := .Options.StringOr "net_iface" "enp5s0" }}
-
+    
     {{ $cpu    := newRequest (printf "%s/api/4/cpu"     $base) | getResponse }}
     {{ $mem    := newRequest (printf "%s/api/4/mem"     $base) | getResponse }}
     {{ $swap   := newRequest (printf "%s/api/4/memswap" $base) | getResponse }}
